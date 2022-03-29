@@ -115,7 +115,7 @@ echo "====================================="
 
 # Volatility
 echo -n "Installing volatility..........................."
-sudo apt-get install -y build-essential git libdistorm3-dev yara libraw1394-11 libcapstone-dev capstone-tool tzdata python2-dev > /dev/null
+sudo apt-get install -y build-essential libdistorm3-dev yara libraw1394-11 libcapstone-dev capstone-tool tzdata python2-dev libpq-dev > /dev/null
 pip2 install pycryptodome > /dev/null
 pip2 install distorm3==3.4.4 > /dev/null
 git clone https://github.com/volatilityfoundation/volatility.git /tmp/volatility &> /dev/null
