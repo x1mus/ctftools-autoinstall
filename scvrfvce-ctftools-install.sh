@@ -4,9 +4,13 @@ echo "====================================="
 echo "      PRELIMINARY INSTALLATIONS      "
 echo "====================================="
 
-# Update and upgrade all packages
-echo -n "Running packages update/upgrade................."
+# Update all packages
+echo -n "Running packages update........................."
 sudo apt-get update
+echo "OK"
+
+# Upgrade all packages
+echo -n "Running packages upgrade........................"
 sudo apt-get upgrade -y
 echo "OK"
 
