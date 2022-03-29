@@ -16,14 +16,12 @@ sudo apt-get upgrade -y &> /dev/null
 echo "OK"
 
 # Install Python3, Pip3
-echo -n "Installing python3 and pip3....................."
-sudo apt-get install -y python3 > /dev/null
+echo -n "Installing pip3................................."
 sudo apt-get install -y python3-pip > /dev/null
 echo "OK"
 
 # Install Python2, Pip2
-echo -n "Installing python2 and pip2....................."
-sudo apt-get install -y python2 > /dev/null
+echo -n "Installing pip2................................."
 curl https://bootstrap.pypa.io/pip/2.7/get-pip.py --output /tmp/get-pip.py &> /dev/null
 sudo python2 /tmp/get-pip.py &> /dev/null
 echo "OK"
@@ -47,10 +45,11 @@ echo "OK"
 echo -n "Installing Sublime Text 3......................."
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - &> /dev/null
 sudo apt-get install -y apt-transport-https > /dev/null
-echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list > /dev/null
 sudo apt-get update > /dev/null
 sudo apt-get install -y sublime-text > /dev/null
 echo "OK"
+
 
 echo""
 echo "====================================="
@@ -115,9 +114,8 @@ echo "====================================="
 
 # Volatility
 echo -n "Installing volatility..........................."
-sudo apt-get install -y build-essential libdistorm3-dev yara libraw1394-11 libcapstone-dev capstone-tool tzdata python2-dev libpq-dev > /dev/null
-pip2 install pycryptodome > /dev/null
-pip2 install distorm3==3.4.4 > /dev/null
+sudo apt-get install -y build-essential libdistorm3-dev yara libraw1394-11 libcapstone-dev capstone-tool tzdata python2-dev libpq-dev
+pip2 install pycryptodome setuptools distorm3==3.4.4
 git clone https://github.com/volatilityfoundation/volatility.git /tmp/volatility &> /dev/null
 chmod +x /tmp/volatility/vol.py
 sed -i "1 s|$|2|" "/tmp/volatility/vol.py"
@@ -179,6 +177,7 @@ fi
 
 echo "Profile successfully added to volatility"
 EOF
+sleep 0.2
 chmod +x /tmp/voladpro/voladpro.sh
 sudo mv /tmp/voladpro /opt/
 sudo ln -s /opt/voladpro/voladpro.sh /usr/local/bin/voladpro
