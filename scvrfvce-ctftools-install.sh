@@ -190,24 +190,40 @@ sudo ln -s /opt/voladpro/voladpro.sh /usr/local/bin/voladpro
 sleep 0.2
 echo "OK"
 
+
 ######################
 #    Cryptography
 ######################
 
-
-
 ######################
 #         Web
 ######################
-
-
 
 ######################
 #    Networking
 ######################
 
 
+echo""
+echo "====================================="
+echo "            REVERSE TOOLS            "
+echo "====================================="
+
+# IDA
+echo -n "Installing IDA.................................."
+#wget https://out7.hex-rays.com/files/idafree77_linux.run -q -O /tmp/ida.run
+#chmod +x /tmp/ida.run
+echo "NOK"
+
+# Ghidra
+echo -n "Installing ghidra..............................."
+sudo apt install openjdk-11-jdk &> /dev/null
+wget https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_10.1.2_build/ghidra_10.1.2_PUBLIC_20220125.zip -q -O /tmp/ghidra.zip
+unzip /tmp/ghidra.zip -d /tmp/ > /dev/null
+mv /tmp/ghidra_10.1.2_PUBLIC /opt/ghidra
+sudo ln -s /opt/ghidra/ghidraRun /usr/local/bin/ghidra
+echo "OK"
 
 ######################
-# Cracking / Reverse
+#    pwn
 ######################
