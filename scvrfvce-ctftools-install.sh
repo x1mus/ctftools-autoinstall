@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+sudo clear # Get sudo permissions to not break the clean output
 
 echo "====================================="
 echo "      PRELIMINARY INSTALLATIONS      "
@@ -114,8 +115,10 @@ echo "====================================="
 
 # Volatility
 echo -n "Installing volatility..........................."
-sudo apt-get install -y build-essential libdistorm3-dev yara libraw1394-11 libcapstone-dev capstone-tool tzdata python2-dev libpq-dev
-pip2 install pycryptodome setuptools distorm3==3.4.4
+sudo apt-get install -y build-essential libdistorm3-dev yara libraw1394-11 libcapstone-dev capstone-tool tzdata python2-dev libpq-dev &> /dev/null
+pip2 install pycryptodome &> /dev/null
+pip2 install setuptools &> /dev/null
+pip2 install distorm3==3.4.4 &> /dev/null
 git clone https://github.com/volatilityfoundation/volatility.git /tmp/volatility &> /dev/null
 chmod +x /tmp/volatility/vol.py
 sed -i "1 s|$|2|" "/tmp/volatility/vol.py"
@@ -179,8 +182,11 @@ echo "Profile successfully added to volatility"
 EOF
 sleep 0.2
 chmod +x /tmp/voladpro/voladpro.sh
+sleep 0.2
 sudo mv /tmp/voladpro /opt/
+sleep 0.2
 sudo ln -s /opt/voladpro/voladpro.sh /usr/local/bin/voladpro
+sleep 0.2
 echo "OK"
 
 ######################
