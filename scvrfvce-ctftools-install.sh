@@ -44,7 +44,8 @@ echo "OK"
 
 # Sublime Text 3
 echo -n "Installing Sublime Text 3......................."
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - &> /dev/null
+wget -O /tmp/sublime-text.gpg https://download.sublimetext.com/sublimehq-pub.gpg -q
+sudo apt-key add /tmp/sublime-text.gpg &> /dev/null
 sudo apt-get install -y apt-transport-https > /dev/null
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list > /dev/null
 sudo apt-get update > /dev/null
