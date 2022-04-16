@@ -12,9 +12,9 @@ sudo apt-get update &> /dev/null
 echo "OK"
 
 # Upgrade all packages
-echo -n "Running packages upgrade........................"
-sudo apt-get upgrade -y &> /dev/null
-echo "OK"
+# echo -n "Running packages upgrade........................"
+# sudo apt-get upgrade -y &> /dev/null
+# echo "OK"
 
 # Install Python3, Pip3
 echo -n "Installing pip3................................."
@@ -32,7 +32,7 @@ echo -n "Installing seclists............................."
 sudo apt-get install -y seclists > /dev/null
 echo "OK"
 
-echo""
+echo ""
 echo "====================================="
 echo "            GENERIC TOOLS            "
 echo "====================================="
@@ -53,18 +53,24 @@ sudo apt-get install -y sublime-text > /dev/null
 echo "OK"
 
 
-echo""
+echo ""
 echo "====================================="
 echo "         STEGANOGRAPHY TOOLS         "
 echo "====================================="
 
 # Stegsolve
 echo -n "Installing stegsolve............................"
-wget http://www.caesum.com/handbook/Stegsolve.jar -O /tmp/stegsolve.jar -q
-chmod +x /tmp/stegsolve.jar
-sudo mkdir /opt/stegsolve
-sudo mv /tmp/stegsolve.jar /opt/stegsolve/
-sudo ln -s /opt/stegsolve/stegsolve.jar /usr/local/bin/stegsolve
+mkdir /tmp/stegsolve
+wget http://www.caesum.com/handbook/Stegsolve.jar -O /tmp/stegsolve/stegsolve.jar -q
+touch /tmp/stegsolve/stegsolve.sh
+cat > /tmp/stegsolve/stegsolve.sh << EOF
+#!/bin/bash
+
+java -jar /opt/stegsolve/stegsolve.jar
+EOF
+chmod +x /tmp/stegsolve/stegsolve.sh
+sudo mv /tmp/stegsolve /opt/stegsolve/
+sudo ln -s /opt/stegsolve/stegsolve.sh /usr/local/bin/stegsolve
 echo "OK"
 
 # LStegB
@@ -109,7 +115,7 @@ sudo ln -s /opt/basecrack/basecrack.py /usr/local/bin/basecrack
 echo "OK"
 
 
-echo""
+echo ""
 echo "====================================="
 echo "           FORENSICS TOOLS           "
 echo "====================================="
@@ -204,7 +210,7 @@ echo "OK"
 ######################
 
 
-echo""
+echo ""
 echo "====================================="
 echo "            REVERSE TOOLS            "
 echo "====================================="
