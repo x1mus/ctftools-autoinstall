@@ -111,6 +111,7 @@ echo "OK"
 echo -n "Installing basecrack............................"
 git clone https://github.com/mufeedvh/basecrack.git /tmp/basecrack &> /dev/null
 chmod +x /tmp/basecrack/basecrack.py
+pip3 install -r /tmp/basecrack/requirements.txt &> /dev/null
 sudo mv /tmp/basecrack /opt/
 sudo ln -s /opt/basecrack/basecrack.py /usr/local/bin/basecrack
 echo "OK"
