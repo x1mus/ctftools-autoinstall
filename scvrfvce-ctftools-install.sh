@@ -12,9 +12,9 @@ sudo apt-get update &> /dev/null
 echo "OK"
 
 # Upgrade all packages
-echo -n "Running packages upgrade........................"
-sudo apt-get upgrade -y &> /dev/null
-echo "OK"
+# echo -n "Running packages upgrade........................"
+# sudo apt-get upgrade -y &> /dev/null
+# echo "OK"
 
 # Install Python3, Pip3
 echo -n "Installing pip3................................."
@@ -32,7 +32,7 @@ echo -n "Installing seclists............................."
 sudo apt-get install -y seclists > /dev/null
 echo "OK"
 
-echo""
+echo ""
 echo "====================================="
 echo "            GENERIC TOOLS            "
 echo "====================================="
@@ -53,24 +53,31 @@ sudo apt-get install -y sublime-text > /dev/null
 echo "OK"
 
 
-echo""
+echo ""
 echo "====================================="
 echo "         STEGANOGRAPHY TOOLS         "
 echo "====================================="
 
 # Stegsolve
 echo -n "Installing stegsolve............................"
-wget http://www.caesum.com/handbook/Stegsolve.jar -O /tmp/stegsolve.jar -q
-chmod +x /tmp/stegsolve.jar
-sudo mkdir /opt/stegsolve
-sudo mv /tmp/stegsolve.jar /opt/stegsolve/
-sudo ln -s /opt/stegsolve/stegsolve.jar /usr/local/bin/stegsolve
+mkdir /tmp/stegsolve
+wget http://www.caesum.com/handbook/Stegsolve.jar -O /tmp/stegsolve/stegsolve.jar -q
+touch /tmp/stegsolve/stegsolve.sh
+cat > /tmp/stegsolve/stegsolve.sh << EOF
+#!/bin/bash
+
+java -jar /opt/stegsolve/stegsolve.jar
+EOF
+chmod +x /tmp/stegsolve/stegsolve.sh
+sudo mv /tmp/stegsolve /opt/stegsolve/
+sudo ln -s /opt/stegsolve/stegsolve.sh /usr/local/bin/stegsolve
 echo "OK"
 
 # LStegB
 echo -n "Installing LStegB..............................."
 git clone https://github.com/x1mus/LStegB.git /tmp/LStegB &> /dev/null
 chmod +x /tmp/LStegB/LStegB.py
+pip3 install -r /tmp/LStegB/requirements.txt &> /dev/null
 sudo mv /tmp/LStegB /opt/
 sudo ln -s /opt/LStegB/LStegB.py /usr/local/bin/LStegB
 echo "OK"
@@ -104,12 +111,13 @@ echo "OK"
 echo -n "Installing basecrack............................"
 git clone https://github.com/mufeedvh/basecrack.git /tmp/basecrack &> /dev/null
 chmod +x /tmp/basecrack/basecrack.py
+pip3 install -r /tmp/basecrack/requirements.txt &> /dev/null
 sudo mv /tmp/basecrack /opt/
 sudo ln -s /opt/basecrack/basecrack.py /usr/local/bin/basecrack
 echo "OK"
 
 
-echo""
+echo ""
 echo "====================================="
 echo "           FORENSICS TOOLS           "
 echo "====================================="
@@ -204,7 +212,7 @@ echo "OK"
 ######################
 
 
-echo""
+echo ""
 echo "====================================="
 echo "            REVERSE TOOLS            "
 echo "====================================="
