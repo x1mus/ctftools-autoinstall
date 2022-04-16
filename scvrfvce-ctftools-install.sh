@@ -77,6 +77,7 @@ echo "OK"
 echo -n "Installing LStegB..............................."
 git clone https://github.com/x1mus/LStegB.git /tmp/LStegB &> /dev/null
 chmod +x /tmp/LStegB/LStegB.py
+pip3 install -r /tmp/LStegB/requirements.txt &> /dev/null
 sudo mv /tmp/LStegB /opt/
 sudo ln -s /opt/LStegB/LStegB.py /usr/local/bin/LStegB
 echo "OK"
